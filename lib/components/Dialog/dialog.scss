@@ -1,0 +1,41 @@
+.jpv-dialog {
+  position: absolute;
+  display: flex;
+  height: 20rem;
+  width: 32rem;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+
+  &__suggestions {
+    border-right: 1px solid #e2e2e2;
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      min-width: 12rem;
+      max-width: 12rem;
+      li {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+        &:hover {
+          background-color: #eee;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &__json {
+    padding: 1rem;
+    flex-grow: 1;
+    overflow-y: auto;
+    code ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li.highlighted {
+        color: green;
+      }
+    }
+  }
+}
