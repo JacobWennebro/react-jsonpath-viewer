@@ -1,7 +1,7 @@
 {
   "name": "react-jsonpath-viewer",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./dist/jpv.js",
   "types": "dist/jpv.d.ts",
   "type": "module",
@@ -12,7 +12,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "jsonpath": "^1.1.1",
+    "jsonpath": "^1.1.1"
+  },
+  "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -28,7 +30,9 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
-    "vite-plugin-dts": "^3.9.1"
+    "vite-plugin-dts": "^3.9.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "volta": {
     "node": "20.14.0",
