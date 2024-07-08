@@ -4,6 +4,7 @@
   "version": "0.0.2",
   "main": "./dist/jpv.js",
   "types": "dist/jpv.d.ts",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
