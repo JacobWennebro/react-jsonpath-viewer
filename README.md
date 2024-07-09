@@ -7,15 +7,15 @@ This project aims to provide an updated version of [react-jsonpath-editor](https
 Simply `import JsonPathViewer from 'react-jsonpath-viewer'`.
 
 | Prop name      | Description                                |   Type    |  Default  | Optional |
-| -------------- | ------------------------------------------ | :-------: | :-------: | -------- |
-| json           | JSON object to query                       |  object   |     -     | ❌       |
-| highlightColor | Color to highlight queried json            |  string   |     -     | ❌       |
-| rootChar       | JSON path prefix character(s)              |  string   |     $     | ✅       |
-| component      | Allows the use of a custom input component | component | `<input>` | ✅       |
+| -------------- | ------------------------------------------ | :-------: | :-------: | :------: |
+| json           | JSON object to query                       |  object   |     -     |    ❌    |
+| highlightColor | Color to highlight queried json            |  string   |     -     |    ❌    |
+| rootChar       | JSON path prefix character(s)              |  string   |     $     |    ✅    |
+| component      | Allows the use of a custom input component | component | `<input>` |    ✅    |
 
 ### Styling
 
-| ⚠️ **Note:** The JPV component is designed to be headless by default meaning it is not opionated about its own styling. To apply a basic structure to the component a style.css file can be imported as such:
+| ⚠️ **Note:** The JPV component is designed to be headless by default meaning it is not opinionated about its own styling. To apply a basic structure to the component a style.css file can be imported as such:
 
 ```js
 import 'react-jsonpath-viewer/style.css';
