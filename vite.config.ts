@@ -12,6 +12,7 @@ export default defineConfig({
       formats: ['es'],
       fileName: 'jpv',
     },
+    copyPublicDir: false,
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
