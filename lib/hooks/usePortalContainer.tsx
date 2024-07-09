@@ -6,6 +6,9 @@ export default function usePortalContainer() {
   useEffect(() => {
     const div = document.createElement('div');
     div.setAttribute('data-jpv-container', '');
+    div.style.position = 'absolute';
+    div.style.top = '0px';
+    div.style.left = '0px';
     document.body.appendChild(div);
     ref.current = div;
     return () => {

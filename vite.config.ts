@@ -9,8 +9,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/index.ts'),
-      formats: ['es'],
-      fileName: 'index',
+      formats: ['es', 'umd'],
+      fileName: format => `jpv.${format}.js`,
+      name: 'jpv'
     },
     copyPublicDir: false,
     rollupOptions: {
