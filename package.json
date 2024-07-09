@@ -1,7 +1,7 @@
 {
   "name": "react-jsonpath-viewer",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "./dist/jpv.js",
   "types": "dist/jpv.d.ts",
   "license": "MIT",
@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "postinstall": "npm run build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
