@@ -25,5 +25,6 @@ const json = {
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <JsonPathViewer highlightColor="pink" json={json} />
+    <JsonPathViewer highlightColor="pink" json={json} />
   </React.StrictMode>
 );

@@ -9,6 +9,7 @@ export default function usePortalContainer() {
     div.style.position = 'absolute';
     div.style.top = '0px';
     div.style.left = '0px';
+    div.style.zIndex = '99999';
     document.body.appendChild(div);
     ref.current = div;
     return () => {

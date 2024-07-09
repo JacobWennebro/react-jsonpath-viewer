@@ -9,9 +9,7 @@ import {
   ForwardRefExoticComponent,
   RefAttributes,
 } from 'react';
-import { createPortal } from 'react-dom';
 import Viewer from '../Dialog';
-import usePortalContainer from '../../hooks/usePortalContainer';
 import InternalStoreProvider from '../../contexts/InternalStoreContext';
 
 type JsonPathViewerProps = {
@@ -57,7 +55,6 @@ const JsonPathEditor: FC<JsonPathViewerProps> = ({
 }: JsonPathViewerProps) => {
   const [path, setPath] = useState(`${rootChar}.`);
   const [showViewer, setShowViewer] = useState<boolean>(false);
-  const portal = usePortalContainer();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -101,9 +98,7 @@ const JsonPathEditor: FC<JsonPathViewerProps> = ({
         onBlur={handleFocusAndBlur}
         onChange={handleChange}
       />
-      {showViewer &&
-        portal &&
-        createPortal(<Viewer inputRef={inputRef} />, portal)}
+      {showViewer && <Viewer inputRef={inputRef} />}
     </InternalStoreProvider>
   );
 };
