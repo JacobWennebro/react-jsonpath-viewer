@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import JsonPathViewer from '../dist';
+import JsonPathViewer from '../dist/jpv.es';
 import '../dist/style.css';
 
 const json = {
