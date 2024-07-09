@@ -1,9 +1,9 @@
 {
   "name": "react-jsonpath-viewer",
   "private": false,
-  "version": "0.0.14",
+  "version": "0.0.15",
   "module": "dist/jpv.es.js",
-  "main": "dist/umd.es.js",
+  "main": "dist/jpv.umd.js",
   "description": "React component for querying json using json path",
   "types": "dist/jpv.d.ts",
   "license": "MIT",
