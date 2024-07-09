@@ -1,15 +1,13 @@
 {
   "name": "react-jsonpath-viewer",
   "private": false,
-  "version": "0.0.12",
-  "module": "./dist/index.js",
+  "version": "0.0.13",
+  "main": "./dist/index.js",
   "types": "dist/jpv.d.ts",
   "license": "MIT",
   "type": "module",
   "files": [
-    "dist/index.js",
-    "dist/jpv.d.ts",
-    "dist/style.css"
+    "dist"
   ],
   "scripts": {
     "dev": "vite",
