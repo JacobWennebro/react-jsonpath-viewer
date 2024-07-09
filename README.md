@@ -1,30 +1,26 @@
-# React + TypeScript + Vite
+# React JPV
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project aims to provide an updated version of [react-jsonpath-editor](https://www.npmjs.com/package/react-jsonpath-editor), originally by [jwatenbe](https://www.npmjs.com/package/react-jsonpath-editor).
 
-Currently, two official plugins are available:
+### Usage
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Simply `import JsonPathViewer from 'react-jsonpath-viewer'`.
 
-## Expanding the ESLint configuration
+| Prop name      | Description                                |   Type    |  Default  | Optional |
+| -------------- | ------------------------------------------ | :-------: | :-------: | -------- |
+| json           | JSON object to query                       |  object   |     -     | ❌       |
+| highlightColor | Color to highlight queried json            |  string   |     -     | ❌       |
+| rootChar       | JSON path prefix character(s)              |  string   |     $     | ✅       |
+| component      | Allows the use of a custom input component | component | `<input>` | ✅       |
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Styling
 
-- Configure the top-level `parserOptions` property like this:
+| ⚠️ **Note:** The JPV component is designed to be headless by default meaning it is not opionated about its own styling. To apply a basic structure to the component a style.css file can be imported as such:
 
 ```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+import 'react-jsonpath-viewer/style.css';
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+![img](https://i.imgur.com/jIz1L9f.png)
+
+For more advanced styling JPV adopts a [BEM](https://getbem.com/) hierarchy of classes that can be utilized.
