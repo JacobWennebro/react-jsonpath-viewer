@@ -15,6 +15,14 @@ import {
 import Viewer from '../Dialog';
 import InternalStoreProvider from '../../contexts/InternalStoreContext';
 
+type InputComponentProps = {
+  value: string;
+  ref: Ref<HTMLInputElement>;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onFocus: (e: FocusEvent<HTMLInputElement>) => void;
+  onBlur: (e: FocusEvent<HTMLInputElement>) => void;
+};
+
 type JsonPathViewerProps = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -22,17 +30,10 @@ type JsonPathViewerProps = {
   highlightColor?: string;
   json: object;
   component?:
-    | FC<{ ref: Ref<HTMLInputElement> }>
+    | FC<InputComponentProps>
     | ForwardRefExoticComponent<
         HTMLAttributes<HTMLInputElement> & RefAttributes<HTMLInputElement>
       >;
-};
-
-type InputComponentProps = {
-  value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onFocus: (e: FocusEvent<HTMLInputElement>) => void;
-  onBlur: (e: FocusEvent<HTMLInputElement>) => void;
 };
 
 const InputComponent = forwardRef(
