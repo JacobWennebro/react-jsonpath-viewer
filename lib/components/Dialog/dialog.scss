@@ -9,12 +9,13 @@
 
   &__suggestions {
     border-right: 1px solid #e2e2e2;
+    overflow-y: auto;
+    min-width: 12rem;
+    max-width: 12rem;
     ul {
       padding: 0;
       margin: 0;
       list-style: none;
-      min-width: 12rem;
-      max-width: 12rem;
       li {
         font-size: 0.85rem;
         padding: 0.5rem;

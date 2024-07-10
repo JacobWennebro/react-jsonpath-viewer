@@ -1,5 +1,4 @@
 import {
-  FC,
   ChangeEvent,
   FocusEvent,
   useState,
@@ -8,19 +7,25 @@ import {
   ForwardedRef,
   ForwardRefExoticComponent,
   RefAttributes,
+  useImperativeHandle,
+  HTMLAttributes,
+  FC,
+  Ref,
 } from 'react';
 import Viewer from '../Dialog';
 import InternalStoreProvider from '../../contexts/InternalStoreContext';
 
 type JsonPathViewerProps = {
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   rootChar?: string;
   highlightColor?: string;
   json: object;
-  component?: ForwardRefExoticComponent<
-    InputComponentProps & RefAttributes<HTMLInputElement>
-  >;
+  component?:
+    | FC<{ ref: Ref<HTMLInputElement> }>
+    | ForwardRefExoticComponent<
+        HTMLAttributes<HTMLInputElement> & RefAttributes<HTMLInputElement>
+      >;
 };
 
 type InputComponentProps = {
@@ -47,60 +52,77 @@ const InputComponent = forwardRef(
   }
 );
 
-const JsonPathEditor: FC<JsonPathViewerProps> = ({
-  rootChar = '$',
-  highlightColor = 'green',
-  json,
-  component: CustomInputComponent = InputComponent, // Default to InputComponent if not provided
-}: JsonPathViewerProps) => {
-  const [path, setPath] = useState(`${rootChar}.`);
-  const [showViewer, setShowViewer] = useState<boolean>(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+const JsonPathEditor = forwardRef<HTMLInputElement, JsonPathViewerProps>(
+  (
+    {
+      rootChar = '$',
+      highlightColor = 'green',
+      json,
+      component: CustomInputComponent = InputComponent, // Default to InputComponent if not provided
+    },
+    ref
+  ) => {
+    const [path, setPath] = useState<string>(`${rootChar}.`);
+    const [showViewer, setShowViewer] = useState<boolean>(false);
+    const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
+    useImperativeHandle(
+      ref,
+      () => {
+        if (inputRef.current) {
+          return inputRef.current;
+        } else {
+          throw new Error('JPV: Failed to set ref on input element');
+        }
+      },
+      [inputRef]
+    );
 
-    const regex = /^[a-zA-Z0-9$. [\]]+$/;
-    const { value } = e.target;
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
 
-    if (value.length <= 0) {
-      setPath(`${rootChar}.`);
-      return;
-    }
+      const regex = /^[a-zA-Z0-9$. [\]*-]+$/;
+      const { value } = e.target;
 
-    if (!value.startsWith(`${rootChar}.`)) return;
+      if (value.length <= 0) {
+        setPath(`${rootChar}.`);
+        return;
+      }
 
-    if (regex.test(value)) {
-      setPath(value.split(' ').join('.'));
-    }
-  };
+      if (!value.startsWith(`${rootChar}.`)) return;
 
-  const handleFocusAndBlur = (e: FocusEvent<HTMLInputElement>) => {
-    if (e.type === 'focus') {
-      setShowViewer(true);
-    } else {
-      setShowViewer(false);
-    }
-  };
+      if (regex.test(value)) {
+        setPath(value.split(' ').join('.'));
+      }
+    };
 
-  return (
-    <InternalStoreProvider
-      rootChar={rootChar}
-      highlightColor={highlightColor}
-      json={json}
-      path={path}
-      setPath={setPath}
-    >
-      <CustomInputComponent
-        value={path}
-        ref={inputRef}
-        onFocus={handleFocusAndBlur}
-        onBlur={handleFocusAndBlur}
-        onChange={handleChange}
-      />
-      {showViewer && <Viewer inputRef={inputRef} />}
-    </InternalStoreProvider>
-  );
-};
+    const handleFocusAndBlur = (e: FocusEvent<HTMLInputElement>) => {
+      if (e.type === 'focus') {
+        setShowViewer(true);
+      } else {
+        setShowViewer(false);
+      }
+    };
+
+    return (
+      <InternalStoreProvider
+        rootChar={rootChar}
+        highlightColor={highlightColor}
+        json={json}
+        path={path}
+        setPath={setPath}
+      >
+        <CustomInputComponent
+          value={path}
+          ref={inputRef}
+          onFocus={handleFocusAndBlur}
+          onBlur={handleFocusAndBlur}
+          onChange={handleChange}
+        />
+        {showViewer && <Viewer inputRef={inputRef} />}
+      </InternalStoreProvider>
+    );
+  }
+);
 
 export default JsonPathEditor;
