@@ -27,6 +27,7 @@ type JsonPathViewerProps = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   rootChar?: string;
+  value?: string;
   highlightColor?: string;
   json: object;
   component?:
@@ -58,12 +59,19 @@ const JsonPathEditor = forwardRef<HTMLInputElement, JsonPathViewerProps>(
     {
       rootChar = '$',
       highlightColor = 'green',
+      value,
       json,
       component: CustomInputComponent = InputComponent, // Default to InputComponent if not provided
     },
     ref
   ) => {
-    const [path, setPath] = useState<string>(`${rootChar}.`);
+    const [path, setPath] = useState<string>(() => {
+      if (value?.startsWith(`${rootChar}.`)) {
+        return value;
+      }
+      return `${rootChar}.${value ?? ''}`;
+    });
+
     const [showViewer, setShowViewer] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
