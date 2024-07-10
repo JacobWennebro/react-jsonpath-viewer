@@ -18,7 +18,7 @@ Simply `import JsonPathViewer from 'react-jsonpath-viewer'`.
 | ⚠️ **Note:** The JPV component is designed to be headless by default meaning it is not opinionated about its own styling. To apply a basic structure to the component a style.css file can be imported as such:
 
 ```js
-import 'react-jsonpath-viewer/style.css';
+import 'react-jsonpath-viewer/dist/style.css';
 ```
 
 ![img](https://i.imgur.com/jIz1L9f.png)
